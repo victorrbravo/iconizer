@@ -147,10 +147,10 @@ def generate_random_string(length):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Convert photo to icon using OpenAI')
+    parser = argparse.ArgumentParser(description='Transform a photo into an icon using OpenAI. It also generates a description for the input image')
 
-    parser.add_argument('-f', '--filename', help='input file path  of image in jpeg format', required=True)
-    parser.add_argument('-o', '--output', help='output file path of icon generated', required=True)
+    parser.add_argument('-f', '--filename', help='Enter the file path for the JPEG image.', required=True)
+    parser.add_argument('-o', '--output', help='Specify the file path for the generated icon.', required=True)
     args = vars(parser.parse_args())
     print("args", args)
     client = OpenAI(

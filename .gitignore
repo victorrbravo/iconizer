@@ -1,0 +1,13 @@
+.mypy_cache
+**/.pytest_cache
+__pycache__
+.vscode
+.env
+*.zip
+**/.pyre/*
+**/*.eml
+.idea
+
+
+/venv/
+/output/
