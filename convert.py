@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 #  Author: Victor Bravo victor.bravo@wizeline.com
 #  Description: This script will convert an image to text and then to an icon
 #  Usage: python convert.py input.jpg output.jpg
@@ -23,6 +24,7 @@ import requests
 import tempfile
 import secrets
 import string
+import argparse
 
 def decode_base64_image(base64_string):
     # Remove data prefix if present
@@ -145,17 +147,21 @@ def generate_random_string(length):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: python  input.jpg output.jpg")
-        sys.exit(1)
+    parser = argparse.ArgumentParser(description='Convert photo to icon using OpenAI')
+
+    parser.add_argument('-f', '--filename', help='input file path  of image in jpeg format', required=True)
+    parser.add_argument('-o', '--output', help='output file path of icon generated', required=True)
+    args = vars(parser.parse_args())
+    print("args", args)
     client = OpenAI(
         # defaults to os.environ.get("OPENAI_API_KEY")
         # or you can explicitly pass in the key (NOT RECOMMENDED)
         api_key=os.getenv("OPENAI_KEY"),
         )
 
-    input_image = sys.argv[1]
-    output_image = sys.argv[2]
+    input_image = args['filename']
+    output_image = args['output']
+
     temp_directory = tempfile.gettempdir()
 
     temp_image = f"{temp_directory}/temp_{ generate_random_string(8)}"
