@@ -7,7 +7,7 @@ __pycache__
 **/.pyre/*
 **/*.eml
 .idea
-
+.DS_Store
 
 /venv/
 /output/
