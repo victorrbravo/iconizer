@@ -62,7 +62,7 @@ def image_to_text(image_path, client):
     image_url = f"data:image/jpeg;base64,{image_64}"
     response = client.chat.completions.create(
     model="gpt-4-vision-preview",
-    messages=[{"role": "user", "content": [{ "type": "text", "text": "Describe the image"},
+    messages=[{"role": "user", "content": [{ "type": "text", "text": "Describe the image.Complete the final paragraph if this is necessary"},
                                            {"type": "image_url", "image_url": { "url": image_url} } ]
                }],
     max_tokens=100,
@@ -72,7 +72,7 @@ def image_to_text(image_path, client):
 
 def text_to_icon(value_text, client):
     image_size = 1024
-    prompt_text = f"{value_text}.\n Your role is an assistant, Draw the image as an ICON, you have to use only vectorial elements like lines, circles.."
+    prompt_text = f"{value_text}.\n Your role is an assistant, identify the most important element of previous sentences and draw it as an ICON, you have to use only vectorial elements like lines and circles."
     response = client.images.generate(
         model="dall-e-3",
         prompt=prompt_text,
